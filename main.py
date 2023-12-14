@@ -31,6 +31,17 @@ def is_transitive(relation_matrix):
                         return False
     return True
 
+def check_properties(relation_matrix):
+    # Перевірка властивостей відношення
+    is_equivalence = is_reflexive(relation_matrix) and is_symmetric(relation_matrix) and is_transitive(relation_matrix)
+    is_partial_order = is_reflexive(relation_matrix) and is_transitive(relation_matrix)
+    is_strict_order = ~is_reflexive(relation_matrix) and is_transitive(relation_matrix)
+
+    print("Властивості відношення:")
+    print(f"Еквівалентність: {is_equivalence}")
+    print(f"Частковий порядок: {is_partial_order}")
+    print(f"Строгий порядок: {is_strict_order}")
+
 def closure_reflexive(relation_matrix):
     # Замикання відношення за рефлексивністю
     n = len(relation_matrix)
@@ -88,6 +99,8 @@ my_matrix = [
 # print(is_symmetric(my_matrix))
 # print(is_reflexive(my_matrix))
 # print(is_transitive(my_matrix))
+
+check_properties(my_matrix)
 
 print("\nЗамикання за рефлексивністю:")
 print_matrix(closure_reflexive(my_matrix))
